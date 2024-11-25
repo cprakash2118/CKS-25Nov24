@@ -1,0 +1,41 @@
+###
+-Point-01# Access to LAB:-
+Login credentials:
+URL: https://cloud.cdp.rpsconsulting.in/console/#/
+User/password
+
+Base Node - CentOS 8.X 
+(KVM nodes)
+ - master-01 - OS-CentOS 8.X 
+ - worker-01 - OS-CentOS 8.X
+ - worker-02 - OS-CentOS 8.X
+Note: 4core, 8GB RAM, 70GB disk-SSD, two n/w eth0-172.168.1.0/24 ; Internet n/w.
+root/redhat 
+
+###
+-Point-02#
+Product - Kubernetes (k8s).
+Reference Link 
+- https://kubernetes.io
+
+CUDO - Docs for Kubernetes (k8s)
+- https://kubernetes.io/docs/home/
+- https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+CUDO - Docs for "COntainer Run time"
+- https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+
+Installing kubeadm (Kubernetes v1.30) - Continue with this option.
+Installing kubeadm (Kubernetes v1.29)
+
+
+
+
+
+
+ 
+
+ 
+
+
+
