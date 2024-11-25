@@ -250,9 +250,44 @@ sysctl --system
 
 *************************
 
-dnf install -y https://download.docker.com/linux/centos/8/x86_64/stable/Packages/runc-1.1.7-1.el8.x86_64.rpm
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-sudo dnf install -y https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.6.32-3.1.el8.x86_64.rpm
+sudo dnf module disable container-tools -y
+
+sudo dnf install containerd.io -y
+
 
 containerd --version
 runc --version
+
+
+sudo dnf install -y https://download.docker.com/linux/centos/8/x86_64/stable/Packages/runc-1.1.7-1.el8.x86_64.rpm
+
+
+sudo dnf install -y https://download.docker.com/linux/centos/8/x86_64/stable/Packages/runc-1.1.7-1.el8.x86_64.rpm
+
+
+-------------
+sudo dnf remove -y containerd.io runc buildah podman
+sudo dnf autoremove -y
+sudo dnf clean all
+sudo rm -rf /var/cache/dnf
+
+
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf update -y
+
+
+wget https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.6.24-3.1.el8.x86_64.rpm
+wget https://download.docker.com/linux/centos/8/x86_64/stable/Packages/runc-1.1.7-1.el8.x86_64.rpm
+
+sudo dnf install -y ./runc-1.1.7-1.el8.x86_64.rpm
+
+
+sudo dnf install -y ./containerd.io-1.6.24-3.1.el8.x86_64.rpm
+containerd --version
+sudo systemctl enable --now containerd
+sudo systemctl status containerd
+
+
+
