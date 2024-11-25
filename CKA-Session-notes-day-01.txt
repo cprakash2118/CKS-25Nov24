@@ -29,10 +29,142 @@ Installing kubeadm (Kubernetes v1.30) - Continue with this option.
 Installing kubeadm (Kubernetes v1.29)
 
 
+###
+-Point-03#
+
+Unit-1: – Core Concepts 
+1.1  Overview of Container Orchestration 
+1.2  Introduction to Kubernetes 
+1.3  Understanding Kubernetes Architecture 
 
 
+Session 1: Overview of Kubernetes (2 Hours)
+What is Kubernetes?
+Kubernetes Features and Benefits
+Kubernetes Components Overview
+Kubernetes Deployment Patterns
+
+Session 2: Kubernetes Architecture (2 Hours)
+Master Node and Worker Nodes
+Control Plane Components (API Server, Scheduler, Controller Manager, etcd etc)
+etcd Overview
+kubelet, kube-proxy, and Container Runtime
+
+Session 3: Installation & Configuration (2 Hours)
+Setting Up a Multi-Node Kubernetes Cluster
+Tools: kubeadm, kubectl
+Configuring Container Runtimes (Docker, Containerd, CRI-O)
+Verifying Cluster Installation
+
+Session 4: Cluster Basics (2 Hours)
+Namespaces
+Kubernetes Objects: Pods, Deployments, ReplicaSets
+Labels and Annotations
+Node and Pod Affinity
 
 
+******************** Before to Start Kubernetes & Container Orchestration concepts ******************** 
+# Containerization:-
+- Container via Container Engine 
+- Container via Container Orchestration tool
+
+Example:-
+Applications deployment 
+Case-01:-
+ app01 [Java based application - version 1.9]
+ app02 [PHP based application - version 16.19]
+ app03 [Python based application - version 3.4]
+ 
+ Above 3 applications deployed on Physical node/server.
+ app01 -> PM-01 [OS=RHEL 7.x] 
+ app02 -> PM-01
+ app03 -> PM-01 
+ 
+ PHP team came with few feature (Required updated PHP version 16.25]
+ Applying patch to PM-01 [OS=RHEL 7.x - PHP patch]
+ While applying PHP patch, customer shared libs/bins/other tools also updated.
+
+ Now suppose - Python based application want to use OLD custom shared libs/bins/other, and we have patched the OS based on PHP requitment.
+ 
+ Python application crahed/not working.
+ 
+ 
+ SOlution-Case-01:-
+ Deploy applications on seperate nodes.
+ 
+ Applications deployed on Physical node/server.
+ app01 -> PM-01 [OS=RHEL 7.x] 
+ app02 -> PM-02
+ app03 -> PM-03
+ 
+ 
+Case-02:-
+Solution - Virtualization.
+PM-01 -> Used Hypervisor (ESXI/KVM/etc) -> VM-01/02/03 
+app01 -> VM-01 [RHEL 7.8]
+app02 -> VM-02 [RHEL 8.2]
+app03 -> VM-03 [RHEL 9.2]
+
+Case-03:-
+Solution - Containerization.
+NOte:- Containerization for light weight application.
+
+Managing Containers 
+1- Container Engine [podman/docker/conatinerd,crio,rocket etc]
+2- Container Orchestration tool [Kubernetes, etc ]
+
+1- What is Container ? And how Container Engine manage the containers?
+
+  Isolated env, where application deployed.
+  Isolated env - Used image [Which provide - libs/bins/other tools required to run the application]
+  Using  image deploy container/application - [Tmp Storage attached by Container Engine ]
+  
+  - Container [ Using image and deployed application - By default - tmp storage attached]  
+  - image     [ Isolated env, where application deployed.
+  - registry  [ Image stored]
+  
+  FYI- By default - tmp storage attached.
+  tmp/logs [errors/access/events] file created by application
+
+  
+2- Container Orchestration tool [Kubernetes-k8s, etc ]
+https://reprints2.forrester.com/#/assets/2/431/RES178526/report
+Production Kubernetes - 
+1. RH OpenSHift 
+2. GKE-Antos 
+3. VMware-Tanju 
+4. etc 
+
+Container Orchestration based on Declarative nature.
+master/worker cluster:-
+master node - Where kubernetes-k8s application running.
+[DNS, kubelet, crio, kube-scheduler, kube-controller-manage, etcd, kube-apiserver, etc ]
+worker node - End user application (Bank,sports etc application). 
+
+As per Production:-
+3 master nodes 
+N worker nodes N=50-100
+
+Container Orchestration tool - k8s 
+
+Layer-06 - End user applications [banking/Sports etc - via POD]
+           POD - one or more container
+Layer-05 - k8s add-on services [networking, dns, metalLB, oauth etc ] 
+Layer-04 - Install kubernetes-k8s 
+           Note: [kubelet, kube-apiserver, kube-controller-manager, kube-scheduler, etcd]
+                These all services running on static POD, kube-apiserver, kube-controller-manage, kube-scheduler, etcd		   
+
+Layer-03 - Container RUN Time (COntainer Engine deployed).
+           Note: 
+		    - containerd, CRI-O , Docker Engine, Mirantis Container Runtime
+			- It provides "container run time" env.
+Layer-02 - Operating System [Enterprise Linux - RHEL, SUSE, Amazone Linux etc ]
+Layer-01 - Hardware-BareMetal/Public-Private Cloud/Virtualization-Env 
+
+ 
+ 
+ 
+# Bootstrapping clusters with kubeadm Installing kubeadm
  
 
  
