@@ -25,6 +25,12 @@
 ################################# k8s cluster installation #################################
 #Step1-
 *************************
+- Enable direct root login [Access console as root]
+  # vim /etc/sssh/sshd_config 
+  /PermitRootLogin
+  PermitRootLogin  yes
+  # systemctl restart sshd 
+
 - Login to Base machine as root account and perform some basic Pre-requisites.
   # hostnamectl set-hostname base01.lab.example.com 
   # vim /etc/hosts
