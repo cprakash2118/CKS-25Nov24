@@ -1,0 +1,133 @@
+#Quick recap:-
+
+- Deployed k8s cluster 
+- Cluster size - [1 master, 2 worker]
+- k8s Cluster version - 1.29 
+- Login to the cluster 
+# mkdir -p $HOME/.kube
+# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# kubectl get nodes 
+# kubectl version 
+
+- Kubernetes resources:-
+# To deploy end user application - We required kubernetes resources.
+1.pod (One or more Container)
+2.service (svc)
+3.replicaSet (rs)
+4.deployment 
+5.daemonSet 
+6.StatefulSet 
+7.secret 
+8.configMap 
+9.ingress (Incoming traffice - towards cluster)
+10. PV (Persistent VOlume)
+11. pvc (Persistent Volume Claim)
+12. Storage Class  
+etc 
+ 
+ 
+- namespace & operations. 
+####
+1. Create a Namespace
+kubectl create namespace my-namespace
+
+
+2. Switch to the Namespace
+kubectl config set-context --current --namespace=my-namespace  
+
+3. Verification
+kubectl config view --minify --output 'jsonpath={..namespace}' ; echo 
+
+Explanation
+kubectl create namespace <namespace-name>
+- Creates a new namespace with the specified name in your Kubernetes cluster.
+
+kubectl config set-context --current --namespace=<namespace-name>
+- Sets the current context to use the specified namespace. The --current flag ensures that the current context is updated without changing other settings.
+
+kubectl config view --minify --output 'jsonpath={..namespace}' ; echo 
+- Verifies the current namespace configured in your kubectl context. It uses JSONPath to extract and display the namespace.
+
+#############
+
+- Kubernetes resources manifest:-
+FYI- k8s resources manifest mean - when express k8s resources in yaml format.
+
+vim pod-example-resources-manifest.yaml 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: nginx
+    ports:
+    - containerPort: 80
+
+- Deploy k8s resources via resources manifest:-
+# kubectl create -f resources-manifest.yaml 
+
+
+############################# day-03 ################################
+- Kubernetes resources:-
+# To deploy end user application - We required kubernetes resources.
+1.pod (One or more Container)
+2.service (svc)
+3.replicaSet (rs)
+4.deployment 
+5.daemonSet 
+6.StatefulSet 
+7.secret 
+8.configMap 
+9.ingress (Incoming traffice - towards cluster)
+10. PV (Persistent VOlume)
+11. pvc (Persistent Volume Claim)
+12. Storage Class  
+etc 
+
+Task-01:-
+- Deploying application via 
+1- POD
+2- ReplicaSet 
+3- Deployment 
+
+- Access application via service (svc).
+
+
+
+# vim rs-example.yaml 
+apiVersion: apps/v1 
+kind: ReplicaSet 
+metadata:
+  name: rs-name-01 
+spec:
+ replicas: 2
+ selector:
+   matchLabels:
+     app: myapp 
+ template:
+   metadata:
+     name: example-pod
+     labels:
+       app: myapp
+   spec:
+    containers:
+    - name: myapp-container
+      image: nginx
+      ports:
+      - containerPort: 80
+
+:set cuc
+:set paste 
+[press "i" - insert]
+[press "esc" - lock mode]
+:wq
+
+
+
