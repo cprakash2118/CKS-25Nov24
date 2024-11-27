@@ -82,7 +82,7 @@ spec:
 3.replicaSet (rs)
 4.deployment 
 5.daemonSet 
-6.StatefulSet 
+6.StatefulSet [Advance 
 7.secret 
 8.configMap 
 9.ingress (Incoming traffice - towards cluster)
@@ -128,6 +128,28 @@ spec:
 [press "i" - insert]
 [press "esc" - lock mode]
 :wq
+
+
+quay.io/repository/cprakash2118/april-java-unzip-httpd-image-02
+#############################
+
+Namespace = telco-cloud 
+
+#part-1 - Application deployment on "telco-cloud" namespace. 
+Application Name - app01 
+Images used - quay.io/cprakash2118/famous-quotes
+Replicas = 2 
+port - 8000
+Deploy service also
+
+
+#part-2 - DB deployment.
+DB name - mysql 
+IMage used - quay.io/cprakash2118/rhel8-mysql-80
+Replicas - 1 
+port - 3306 (mysql port)
+Deploy service also
+
 
 
 
