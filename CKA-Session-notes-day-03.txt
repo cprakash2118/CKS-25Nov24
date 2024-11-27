@@ -151,5 +151,10 @@ port - 3306 (mysql port)
 Deploy service also
 
 
+ kubectl create secret generic mysql --from-literal user=myuser --from-literal password=redhat123 secret/mysql created--from-literal database=test_secrets --from-literal hostname=mysql
 
+
+kubectl set env deployment/mysql --from secret/mysql --prefix MYSQL_
+
+kubectl set env deployment/mysql --from secret/mysql --prefix APP_NAME_
 
